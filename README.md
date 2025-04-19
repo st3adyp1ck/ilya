@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=32&duration=2800&pause=2000&color=A9FEF7&center=true&vCenter=true&width=940&lines=Hey%2C+I'm+Ilya+Belous+%F0%9F%91%8B;Senior+Full+Stack+Developer+with+15%2B+Years+Experience" alt="Typing SVG" />
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&duration=2800&pause=2000&color=A9FEF7&center=true&vCenter=true&width=940&lines=Hey%2C+I'm+Ilya+Belous+%F0%9F%91%8B;Senior+Full+Stack+Developer+with+15%2B+Years+Experience" alt="Typing SVG" />
   <br/>
   
   <!-- Profile Views Counter -->
