@@ -1,0 +1,174 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --neon-blue: #0ff0fc;
+    --neon-pink: #ff00ff;
+    --neon-purple: #9d00ff;
+    --neon-green: #00ff7f;
+    --dark-bg: #0a0a1a;
+}
+
+body {
+    font-family: 'Rajdhani', sans-serif;
+    background-color: var(--dark-bg);
+    color: #e2e8f0;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+.tech-font {
+    font-family: 'Orbitron', sans-serif;
+}
+
+.gradient-text {
+    background: linear-gradient(90deg, var(--neon-blue) 0%, var(--neon-pink) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.card-glass {
+    background: rgba(10, 10, 26, 0.65);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.neon-border {
+    border: 1px solid var(--neon-blue);
+    box-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue), 0 0 40px rgba(15, 255, 252, 0.1);
+}
+
+.neon-box {
+    box-shadow: 0 0 15px var(--neon-blue), 0 0 30px rgba(15, 255, 252, 0.2);
+}
+
+.timeline-item:before {
+    content: '';
+    position: absolute;
+    left: -45px;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--neon-pink);
+    border: 4px solid var(--dark-bg);
+    box-shadow: 0 0 10px var(--neon-pink);
+}
+
+.skill-bar {
+    width: 100%;
+    background-color: rgba(30, 41, 59, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    height: 12px;
+}
+
+.skill-progress {
+    height: 100%;
+    border-radius: 10px;
+    background: linear-gradient(90deg, var(--neon-blue) 0%, var(--neon-purple) 100%);
+    box-shadow: 0 0 8px var(--neon-blue);
+}
+
+.grid-bg {
+    background-image:
+        linear-gradient(to right, rgba(15, 255, 252, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(15, 255, 252, 0.05) 1px, transparent 1px);
+    background-size: 60px 60px;
+}
+
+.neon-glow {
+    box-shadow: 0 0 15px var(--neon-blue), 0 0 30px rgba(15, 255, 252, 0.2);
+}
+
+.hover-glow:hover {
+    box-shadow: 0 0 15px var(--neon-pink), 0 0 30px rgba(255, 0, 255, 0.2);
+    transition: all 0.3s ease;
+    transform: translateY(-3px);
+}
+
+.neon-link {
+    position: relative;
+}
+
+.neon-link:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background: var(--neon-blue);
+    box-shadow: 0 0 5px var(--neon-blue);
+    transition: width 0.3s;
+}
+
+.neon-link:hover:after {
+    width: 100%;
+}
+
+.holographic-card {
+    position: relative;
+    transition: all 0.5s ease;
+    transform-style: preserve-3d;
+}
+
+.holographic-card:hover {
+    transform: perspective(1000px) rotateX(5deg) rotateY(5deg) scale(1.02);
+}
+
+.holographic-card:before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    background: linear-gradient(45deg, var(--neon-blue), var(--neon-pink), var(--neon-purple));
+    z-index: -1;
+    filter: blur(20px);
+    opacity: 0.3;
+    transition: all 0.5s ease;
+}
+
+.holographic-card:hover:before {
+    opacity: 0.6;
+}
+
+/* Futuristic Effects */
+.binary-rain {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    opacity: 0.05;
+    pointer-events: none;
+    font-family: monospace;
+    color: var(--neon-green);
+    overflow: hidden;
+}
+
+.binary-digit {
+    position: absolute;
+    opacity: 0;
+    animation: binary-fall linear;
+}
+
+.scanline {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background: linear-gradient(to bottom,
+            transparent,
+            rgba(15, 255, 252, 0.02) 1px,
+            transparent 1px);
+    background-size: 100% 8px;
+    pointer-events: none;
+    animation: scanline 8s linear infinite;
+    z-index: 10;
+}
