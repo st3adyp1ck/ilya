@@ -20,31 +20,53 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
+// Throttle function to limit how often a function can be called
+function throttle(func, limit) {
+    let inThrottle;
+    return function () {
+        const args = arguments;
+        const context = this;
+        if (!inThrottle) {
+            func.apply(context, args);
+            inThrottle = true;
+            setTimeout(() => inThrottle = false, limit);
+        }
+    };
+}
+
 // Show/hide back to top button
-window.addEventListener('scroll', () => {
+const handleScroll = () => {
     const backToTopButton = document.getElementById('back-to-top');
+    if (!backToTopButton) return;
+
     if (window.pageYOffset > 300) {
         backToTopButton.classList.remove('hidden');
     } else {
         backToTopButton.classList.add('hidden');
     }
-});
+};
+
+// Use throttled version of scroll handler
+window.addEventListener('scroll', throttle(handleScroll, 100));
 
 // Back to top functionality
-document.getElementById('back-to-top').addEventListener('click', () => {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
+const backToTopButton = document.getElementById('back-to-top');
+if (backToTopButton) {
+    backToTopButton.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
     });
-});
+}
 
 // Form submission
-const form = document.querySelector('form');
-if (form) {
-    form.addEventListener('submit', (e) => {
+const contactForm = document.getElementById('contact-form');
+if (contactForm) {
+    contactForm.addEventListener('submit', function (e) {
         e.preventDefault();
-
-        // Create futuristic alert
+        // Here you would typically add your form submission logic
+        // For now, we'll just show a success message
         const alertDiv = document.createElement('div');
         alertDiv.className = 'fixed top-10 left-1/2 transform -translate-x-1/2 z-50';
         alertDiv.innerHTML = `
@@ -56,28 +78,7 @@ if (form) {
         document.body.appendChild(alertDiv);
 
         // Remove after some time
-        setTimeout(() => {
-            alertDiv.remove();
-        }, 5000);
-
-        form.reset();
+        setTimeout(() => alertDiv.remove(), 5000);
+        this.reset();
     });
 }
-
-// Add this to your existing JavaScript
-document.getElementById('contact-form').addEventListener('submit', function (e) {
-    e.preventDefault();
-    // Here you would typically add your form submission logic
-    // For now, we'll just show a success message
-    const alertDiv = document.createElement('div');
-    alertDiv.className = 'fixed top-10 left-1/2 transform -translate-x-1/2 z-50';
-    alertDiv.innerHTML = `
-        <div class="bg-dark-bg border border-neon-green text-neon-green px-6 py-4 rounded-lg tech-font neon-box flex items-center">
-            <i class="fas fa-check-circle mr-3"></i>
-            <span>MESSAGE SENT SUCCESSFULLY!</span>
-        </div>
-    `;
-    document.body.appendChild(alertDiv);
-    setTimeout(() => alertDiv.remove(), 5000);
-    this.reset();
-});

@@ -14,6 +14,14 @@ body {
     color: #e2e8f0;
     scroll-behavior: smooth;
     overflow-x: hidden;
+    cursor: none;
+}
+
+/* Make sure interactive elements don't show the default cursor */
+a,
+button,
+.holographic-card {
+    cursor: none;
 }
 
 .tech-font {
@@ -151,10 +159,30 @@ body {
     overflow: hidden;
 }
 
+@keyframes binary-fall {
+    0% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.5;
+    }
+
+    90% {
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: translateY(1000%);
+        opacity: 0;
+    }
+}
+
 .binary-digit {
     position: absolute;
-    opacity: 0;
-    animation: binary-fall linear;
+    animation: binary-fall 3s linear forwards;
+    font-size: 14px;
 }
 
 .scanline {
@@ -171,4 +199,68 @@ body {
     pointer-events: none;
     animation: scanline 8s linear infinite;
     z-index: 10;
+}
+
+/* Add this to your existing CSS */
+.custom-cursor {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--neon-blue);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transition: all 0.1s ease;
+    transform: translate(-50%, -50%);
+}
+
+.cursor-dot {
+    width: 4px;
+    height: 4px;
+    background: var(--neon-pink);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+}
+
+/* Add this class for cursor hover effect */
+.cursor-grow {
+    transform: translate(-50%, -50%) scale(1.5);
+    background: rgba(15, 240, 252, 0.1);
+    border-color: var(--neon-pink);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--dark-bg);
+    border-left: 1px solid rgba(15, 240, 252, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, var(--neon-blue), var(--neon-pink));
+    border-radius: 5px;
+    border: 2px solid var(--dark-bg);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(to bottom, var(--neon-pink), var(--neon-purple));
+}
+
+/* Progress Bar */
+.progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: linear-gradient(to right, var(--neon-blue), var(--neon-pink));
+    z-index: 1000;
+    transition: width 0.2s ease-out;
+    box-shadow: 0 0 10px var(--neon-blue);
 }
