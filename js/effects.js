@@ -59,6 +59,15 @@ function updateProgressBar() {
     const progressBar = document.querySelector('.progress-bar');
     if (!progressBar) return;
 
+    // Check if we're on mobile
+    const isMobile = window.innerWidth <= 768 || 'ontouchstart' in document.documentElement;
+
+    // Hide progress bar on mobile devices
+    if (isMobile) {
+        progressBar.style.display = 'none';
+        return;
+    }
+
     const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
     // Prevent division by zero and ensure progress is between 0-100%
     const progress = totalScroll > 0 ? Math.min(100, Math.max(0, (window.scrollY / totalScroll) * 100)) : 0;
@@ -95,12 +104,21 @@ function initEffects() {
         initCustomCursor();
     }
 
-    // Add scroll event listener for progress bar with throttling
-    const throttledProgressUpdate = throttle(updateProgressBar, 200); // Increased throttle time for better performance
-    window.addEventListener('scroll', throttledProgressUpdate, { passive: true });
+    // Only add progress bar on desktop
+    if (!isMobile) {
+        // Add scroll event listener for progress bar with throttling
+        const throttledProgressUpdate = throttle(updateProgressBar, 200); // Increased throttle time for better performance
+        window.addEventListener('scroll', throttledProgressUpdate, { passive: true });
 
-    // Initial progress bar update
-    updateProgressBar();
+        // Initial progress bar update
+        updateProgressBar();
+    } else {
+        // Hide progress bar on mobile
+        const progressBar = document.querySelector('.progress-bar');
+        if (progressBar) {
+            progressBar.style.display = 'none';
+        }
+    }
 }
 
 // Manage binary rain animation

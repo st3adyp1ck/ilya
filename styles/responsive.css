@@ -83,9 +83,11 @@
         animation: none !important;
     }
 
-    /* Disable binary rain and scanline effects on mobile */
+    /* Disable binary rain, scanline, and progress bar effects on mobile */
     .binary-rain,
-    .scanline {
+    .scanline,
+    .progress-bar,
+    .desktop-only {
         display: none !important;
     }
 
@@ -119,5 +121,19 @@
         -o-transform: translateZ(0);
         transform: translateZ(0);
         backface-visibility: hidden;
+    }
+
+    /* Fix scrollbar issues on mobile */
+    ::-webkit-scrollbar {
+        width: 0 !important;
+        display: none !important;
+    }
+
+    /* Use standard scrolling behavior on mobile */
+    html {
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
     }
 }
