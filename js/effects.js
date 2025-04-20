@@ -1,4 +1,4 @@
-// Create binary rain effect
+// Create binary rain effect for desktop
 function createBinaryRain() {
     const container = document.getElementById('binaryRain');
     const digits = ['0', '1'];
@@ -28,6 +28,38 @@ function createBinaryRain() {
 
     // Run the cleanup function more frequently to ensure smooth looping
     setInterval(cleanupBinaryRain, 1000);
+}
+
+// Create simplified binary rain effect for mobile
+function createSimplifiedBinaryRain() {
+    const container = document.getElementById('binaryRain');
+    const digits = ['0', '1'];
+
+    // Create very few columns for mobile to reduce load
+    for (let i = 0; i < 8; i++) {
+        const column = document.createElement('div');
+        column.className = 'binary-column absolute';
+        column.style.left = `${Math.random() * 100}%`;
+
+        // Create very few digits per column for mobile
+        for (let j = 0; j < 6; j++) {
+            const digit = document.createElement('div');
+            digit.className = 'binary-digit';
+            digit.textContent = digits[Math.floor(Math.random() * digits.length)];
+            // Slower animation for mobile
+            digit.style.animationDuration = `${5 + Math.random() * 7}s`;
+            // Longer delay for mobile
+            digit.style.animationDelay = `${Math.random() * 3}s`;
+            // Set initial vertical position to be staggered
+            digit.style.top = `${j * 10}%`;
+            column.appendChild(digit);
+        }
+
+        container.appendChild(column);
+    }
+
+    // Run the cleanup function less frequently on mobile
+    setInterval(cleanupBinaryRain, 2000);
 }
 
 // Custom cursor effect
@@ -93,13 +125,18 @@ function initEffects() {
     // Check if we're on mobile
     const isMobile = window.innerWidth <= 768 || 'ontouchstart' in document.documentElement;
 
-    // Only initialize binary rain on desktop
-    if (!isMobile) {
-        // Stop any existing binary rain animations
-        const binaryRain = document.getElementById('binaryRain');
-        if (binaryRain) {
-            binaryRain.innerHTML = '';
-        }
+    // Initialize binary rain with fewer elements on mobile
+    const binaryRain = document.getElementById('binaryRain');
+    if (binaryRain) {
+        binaryRain.innerHTML = '';
+    }
+
+    // Create binary rain with fewer elements on mobile
+    if (isMobile) {
+        // Simplified binary rain for mobile
+        createSimplifiedBinaryRain();
+    } else {
+        // Full binary rain for desktop
         createBinaryRain();
         initCustomCursor();
     }
@@ -154,14 +191,14 @@ document.addEventListener('visibilitychange', () => {
     }
 });
 
-// Add hover effect to all holographic cards - only on desktop
+// Add hover effect to all holographic cards - with different behavior for mobile and desktop
 document.addEventListener('DOMContentLoaded', () => {
     // Check if we're on mobile
     const isMobile = window.innerWidth <= 768 || 'ontouchstart' in document.documentElement;
 
-    // Only apply holographic effects on desktop
-    if (!isMobile) {
-        document.querySelectorAll('.holographic-card').forEach(card => {
+    document.querySelectorAll('.holographic-card').forEach(card => {
+        if (!isMobile) {
+            // Full holographic effects on desktop
             card.addEventListener('mousemove', (e) => {
                 const x = e.clientX - card.getBoundingClientRect().left;
                 const y = e.clientY - card.getBoundingClientRect().top;
@@ -178,8 +215,11 @@ document.addEventListener('DOMContentLoaded', () => {
             card.addEventListener('mouseleave', () => {
                 card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
             });
-        });
-    }
+        } else {
+            // Simplified effect for mobile - subtle pulse animation
+            card.classList.add('mobile-card-effect');
+        }
+    });
 });
 
 
