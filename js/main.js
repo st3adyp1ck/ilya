@@ -85,17 +85,16 @@ if (backToTopButton) {
 // Form submission
 const contactForm = document.getElementById('contact-form');
 if (contactForm) {
-    // For the first submission, we'll use JavaScript to submit the form
-    // This helps with the initial FormSubmit activation
     contactForm.addEventListener('submit', function (e) {
-        // Don't prevent default - let the form submit naturally to FormSubmit
-        // But show a loading indicator
+        e.preventDefault(); // Prevent the default form submission
+
+        // Show loading indicator
         const button = this.querySelector('button[type="submit"]');
         const originalText = button.innerHTML;
         button.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> SENDING...';
         button.disabled = true;
 
-        // Store form data in localStorage in case we need to debug
+        // Get form data
         const formData = new FormData(this);
         const formValues = {};
         for (let [key, value] of formData.entries()) {
@@ -103,7 +102,22 @@ if (contactForm) {
         }
         localStorage.setItem('lastFormSubmission', JSON.stringify(formValues));
 
-        // Let the form submit naturally to FormSubmit
-        // The page will redirect to thank-you.html after submission
+        // Submit the form data to FormSubmit via fetch
+        fetch('https://formsubmit.co/ib310us@gmail.com', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        })
+            .then(response => {
+                // Redirect to thank-you page regardless of response
+                window.location.href = 'thank-you.html';
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                // Still redirect to thank-you page even if there's an error
+                window.location.href = 'thank-you.html';
+            });
     });
 }
