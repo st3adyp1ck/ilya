@@ -14,16 +14,20 @@ function createBinaryRain() {
             const digit = document.createElement('div');
             digit.className = 'binary-digit';
             digit.textContent = digits[Math.floor(Math.random() * digits.length)];
+            // Randomize animation duration for more natural effect
             digit.style.animationDuration = `${3 + Math.random() * 5}s`;
+            // Randomize animation delay for staggered start
             digit.style.animationDelay = `${Math.random() * 2}s`;
+            // Set initial vertical position to be staggered
+            digit.style.top = `${j * 5}%`;
             column.appendChild(digit);
         }
 
         container.appendChild(column);
     }
 
-    // Cleanup old digits periodically - reduced frequency to prevent performance issues
-    setInterval(cleanupBinaryRain, 3000);
+    // Run the cleanup function more frequently to ensure smooth looping
+    setInterval(cleanupBinaryRain, 1000);
 }
 
 // Custom cursor effect
@@ -94,7 +98,7 @@ function initEffects() {
     updateProgressBar();
 }
 
-// Clean up binary rain
+// Manage binary rain animation
 function cleanupBinaryRain() {
     const container = document.getElementById('binaryRain');
     if (!container) return;
@@ -102,13 +106,17 @@ function cleanupBinaryRain() {
     const digits = container.getElementsByClassName('binary-digit');
     if (digits.length === 0) return;
 
-    // Remove digits that have completed their animation
-    // Use a more reliable way to check if digits are out of view
+    // Check for digits that have moved out of view and reset their animation
     Array.from(digits).forEach(digit => {
         const rect = digit.getBoundingClientRect();
-        // Only remove if it's completely out of view and below the viewport
-        if (rect.bottom < 0 || rect.top > window.innerHeight + 200) {
-            digit.remove();
+        // If the digit is below the viewport, reset its position to create a loop effect
+        if (rect.top > window.innerHeight + 100) {
+            // Reset the digit's position to above the viewport
+            digit.style.transform = 'translateY(-100px)';
+            // Randomize the digit value for more variety
+            digit.textContent = Math.floor(Math.random() * 2);
+            // Randomize animation duration for more natural effect
+            digit.style.animationDuration = `${3 + Math.random() * 5}s`;
         }
     });
 }

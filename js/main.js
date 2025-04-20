@@ -1,3 +1,25 @@
+// Preloader functionality
+document.addEventListener('DOMContentLoaded', () => {
+    const preloader = document.getElementById('preloader');
+    const mainContent = document.getElementById('main-content');
+
+    // Simulate loading time (you can remove this setTimeout in production)
+    setTimeout(() => {
+        // Hide preloader
+        preloader.style.opacity = '0';
+        preloader.style.visibility = 'hidden';
+
+        // Show main content with a fade-in effect
+        mainContent.classList.remove('invisible');
+        mainContent.classList.add('transition-opacity', 'duration-1000');
+        setTimeout(() => {
+            mainContent.classList.remove('opacity-0');
+            // Enable scrolling on body after preloader is hidden
+            document.body.style.overflow = 'auto';
+        }, 100);
+    }, 2500); // Adjust time as needed
+});
+
 // Mobile menu toggle
 const mobileMenuButton = document.querySelector('.mobile-menu-button');
 const mobileMenu = document.querySelector('.mobile-menu');
@@ -63,22 +85,25 @@ if (backToTopButton) {
 // Form submission
 const contactForm = document.getElementById('contact-form');
 if (contactForm) {
+    // For the first submission, we'll use JavaScript to submit the form
+    // This helps with the initial FormSubmit activation
     contactForm.addEventListener('submit', function (e) {
-        e.preventDefault();
-        // Here you would typically add your form submission logic
-        // For now, we'll just show a success message
-        const alertDiv = document.createElement('div');
-        alertDiv.className = 'fixed top-10 left-1/2 transform -translate-x-1/2 z-50';
-        alertDiv.innerHTML = `
-            <div class="bg-dark-bg border border-neon-green text-neon-green px-6 py-4 rounded-lg tech-font neon-box flex items-center">
-                <i class="fas fa-check-circle mr-3"></i>
-                <span>MESSAGE SENT SUCCESSFULLY - THANK YOU!</span>
-            </div>
-        `;
-        document.body.appendChild(alertDiv);
+        // Don't prevent default - let the form submit naturally to FormSubmit
+        // But show a loading indicator
+        const button = this.querySelector('button[type="submit"]');
+        const originalText = button.innerHTML;
+        button.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> SENDING...';
+        button.disabled = true;
 
-        // Remove after some time
-        setTimeout(() => alertDiv.remove(), 5000);
-        this.reset();
+        // Store form data in localStorage in case we need to debug
+        const formData = new FormData(this);
+        const formValues = {};
+        for (let [key, value] of formData.entries()) {
+            formValues[key] = value;
+        }
+        localStorage.setItem('lastFormSubmission', JSON.stringify(formValues));
+
+        // Let the form submit naturally to FormSubmit
+        // The page will redirect to thank-you.html after submission
     });
 }
