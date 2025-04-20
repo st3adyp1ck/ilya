@@ -2,6 +2,8 @@
 @media (max-width: 768px) {
     .grid-bg {
         background-size: 40px 40px;
+        /* Disable grid background animation for mobile */
+        background-attachment: initial;
     }
 
     .timeline-item:before {
@@ -14,6 +16,8 @@
         width: 100%;
         max-width: 100%;
         overflow-x: hidden;
+        /* Improve scrolling performance */
+        -webkit-overflow-scrolling: touch;
     }
 
     /* Adjust font sizes for mobile */
@@ -56,9 +60,33 @@
         justify-content: center !important;
     }
 
-    /* Fix for holographic cards on mobile */
-    .holographic-card:hover {
+    /* Disable animations on mobile for better performance */
+    .holographic-card,
+    .holographic-card:before,
+    .holographic-card:hover,
+    .hover-glow:hover,
+    .neon-box,
+    .neon-border {
         transform: none !important;
+        transition: none !important;
+        animation: none !important;
+        box-shadow: 0 0 5px rgba(15, 240, 252, 0.3) !important;
+    }
+
+    /* Disable floating animation */
+    .floating {
+        animation: none !important;
+    }
+
+    /* Disable spin animations */
+    .animate-spin {
+        animation: none !important;
+    }
+
+    /* Disable binary rain and scanline effects on mobile */
+    .binary-rain,
+    .scanline {
+        display: none !important;
     }
 
     /* Adjust preloader for mobile */
@@ -81,5 +109,15 @@
         .cursor-dot {
             display: none !important;
         }
+    }
+
+    /* Use hardware acceleration for smoother scrolling */
+    * {
+        -webkit-transform: translateZ(0);
+        -moz-transform: translateZ(0);
+        -ms-transform: translateZ(0);
+        -o-transform: translateZ(0);
+        transform: translateZ(0);
+        backface-visibility: hidden;
     }
 }

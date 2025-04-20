@@ -81,18 +81,23 @@ function throttle(func, limit) {
 
 // Initialize all effects
 function initEffects() {
-    // Stop any existing binary rain animations
-    const binaryRain = document.getElementById('binaryRain');
-    if (binaryRain) {
-        binaryRain.innerHTML = '';
+    // Check if we're on mobile
+    const isMobile = window.innerWidth <= 768 || 'ontouchstart' in document.documentElement;
+
+    // Only initialize binary rain on desktop
+    if (!isMobile) {
+        // Stop any existing binary rain animations
+        const binaryRain = document.getElementById('binaryRain');
+        if (binaryRain) {
+            binaryRain.innerHTML = '';
+        }
+        createBinaryRain();
+        initCustomCursor();
     }
 
-    createBinaryRain();
-    initCustomCursor();
-
     // Add scroll event listener for progress bar with throttling
-    const throttledProgressUpdate = throttle(updateProgressBar, 100);
-    window.addEventListener('scroll', throttledProgressUpdate);
+    const throttledProgressUpdate = throttle(updateProgressBar, 200); // Increased throttle time for better performance
+    window.addEventListener('scroll', throttledProgressUpdate, { passive: true });
 
     // Initial progress bar update
     updateProgressBar();
@@ -131,24 +136,32 @@ document.addEventListener('visibilitychange', () => {
     }
 });
 
-// Add hover effect to all holographic cards
-document.querySelectorAll('.holographic-card').forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-        const x = e.clientX - card.getBoundingClientRect().left;
-        const y = e.clientY - card.getBoundingClientRect().top;
+// Add hover effect to all holographic cards - only on desktop
+document.addEventListener('DOMContentLoaded', () => {
+    // Check if we're on mobile
+    const isMobile = window.innerWidth <= 768 || 'ontouchstart' in document.documentElement;
 
-        const centerX = card.offsetWidth / 2;
-        const centerY = card.offsetHeight / 2;
+    // Only apply holographic effects on desktop
+    if (!isMobile) {
+        document.querySelectorAll('.holographic-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const x = e.clientX - card.getBoundingClientRect().left;
+                const y = e.clientY - card.getBoundingClientRect().top;
 
-        const angleY = (x - centerX) / 20;
-        const angleX = (centerY - y) / 20;
+                const centerX = card.offsetWidth / 2;
+                const centerY = card.offsetHeight / 2;
 
-        card.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg)`;
-    });
+                const angleY = (x - centerX) / 20;
+                const angleX = (centerY - y) / 20;
 
-    card.addEventListener('mouseleave', () => {
-        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
-    });
+                card.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+            });
+        });
+    }
 });
 
 

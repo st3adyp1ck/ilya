@@ -72,8 +72,8 @@ const handleScroll = () => {
     }
 };
 
-// Use throttled version of scroll handler
-window.addEventListener('scroll', throttle(handleScroll, 100));
+// Use throttled version of scroll handler with increased throttle time for better performance
+window.addEventListener('scroll', throttle(handleScroll, 200), { passive: true });
 
 // Back to top functionality
 const backToTopButton = document.getElementById('back-to-top');
