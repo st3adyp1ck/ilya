@@ -3,6 +3,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const preloader = document.getElementById('preloader');
     const mainContent = document.getElementById('main-content');
 
+    // Ensure body doesn't scroll during preload
+    document.body.style.overflow = 'hidden';
+
     // Simulate loading time (you can remove this setTimeout in production)
     setTimeout(() => {
         // Hide preloader
@@ -16,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
             mainContent.classList.remove('opacity-0');
             // Enable scrolling on body after preloader is hidden
             document.body.style.overflow = 'auto';
+            document.body.style.overflowX = 'hidden'; // Keep horizontal overflow hidden
         }, 100);
     }, 2500); // Adjust time as needed
 });

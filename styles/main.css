@@ -15,8 +15,7 @@ body {
     scroll-behavior: smooth;
     overflow-x: hidden;
     cursor: none;
-    overflow: hidden;
-    /* Initially hidden to prevent scrolling during preloader */
+    /* Removed overflow: hidden to allow scrolling */
 }
 
 /* Make sure interactive elements don't show the default cursor */

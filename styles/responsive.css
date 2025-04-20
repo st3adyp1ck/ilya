@@ -7,4 +7,79 @@
     .timeline-item:before {
         left: -32px;
     }
+
+    /* Fix for mobile overflow issues */
+    html,
+    body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    /* Adjust font sizes for mobile */
+    h1 {
+        font-size: 2.5rem !important;
+    }
+
+    h2 {
+        font-size: 2rem !important;
+    }
+
+    h3 {
+        font-size: 1.5rem !important;
+    }
+
+    /* Adjust padding for mobile */
+    section {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+
+    /* Ensure images don't overflow */
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Adjust card spacing */
+    .card-glass {
+        padding: 1rem !important;
+    }
+
+    /* Fix for timeline on mobile */
+    .timeline-item {
+        padding-right: 0 !important;
+    }
+
+    /* Adjust spacing for technology badges */
+    .flex-wrap {
+        justify-content: center !important;
+    }
+
+    /* Fix for holographic cards on mobile */
+    .holographic-card:hover {
+        transform: none !important;
+    }
+
+    /* Adjust preloader for mobile */
+    .loading-bar {
+        width: 80% !important;
+        max-width: 300px;
+    }
+
+    /* Fix for custom cursor on mobile */
+    @media (hover: none) {
+
+        body,
+        a,
+        button,
+        .holographic-card {
+            cursor: auto !important;
+        }
+
+        .custom-cursor,
+        .cursor-dot {
+            display: none !important;
+        }
+    }
 }
