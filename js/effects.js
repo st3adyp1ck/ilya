@@ -1,16 +1,22 @@
-// Create binary rain effect for desktop
+// Create binary rain effect
 function createBinaryRain() {
     const container = document.getElementById('binaryRain');
     const digits = ['0', '1'];
 
-    // Create fewer columns to reduce load
-    for (let i = 0; i < 20; i++) {
+    // Check if we're on mobile
+    const isMobile = window.innerWidth <= 768 || 'ontouchstart' in document.documentElement;
+
+    // Create fewer columns to reduce load (even fewer on mobile)
+    const columnCount = isMobile ? 10 : 20;
+    const digitsPerColumn = isMobile ? 8 : 15;
+
+    for (let i = 0; i < columnCount; i++) {
         const column = document.createElement('div');
         column.className = 'binary-column absolute';
         column.style.left = `${Math.random() * 100}%`;
 
         // Create fewer digits per column
-        for (let j = 0; j < 15; j++) {
+        for (let j = 0; j < digitsPerColumn; j++) {
             const digit = document.createElement('div');
             digit.className = 'binary-digit';
             digit.textContent = digits[Math.floor(Math.random() * digits.length)];
@@ -28,38 +34,6 @@ function createBinaryRain() {
 
     // Run the cleanup function more frequently to ensure smooth looping
     setInterval(cleanupBinaryRain, 1000);
-}
-
-// Create simplified binary rain effect for mobile
-function createSimplifiedBinaryRain() {
-    const container = document.getElementById('binaryRain');
-    const digits = ['0', '1'];
-
-    // Create very few columns for mobile to reduce load
-    for (let i = 0; i < 8; i++) {
-        const column = document.createElement('div');
-        column.className = 'binary-column absolute';
-        column.style.left = `${Math.random() * 100}%`;
-
-        // Create very few digits per column for mobile
-        for (let j = 0; j < 6; j++) {
-            const digit = document.createElement('div');
-            digit.className = 'binary-digit';
-            digit.textContent = digits[Math.floor(Math.random() * digits.length)];
-            // Slower animation for mobile
-            digit.style.animationDuration = `${5 + Math.random() * 7}s`;
-            // Longer delay for mobile
-            digit.style.animationDelay = `${Math.random() * 3}s`;
-            // Set initial vertical position to be staggered
-            digit.style.top = `${j * 10}%`;
-            column.appendChild(digit);
-        }
-
-        container.appendChild(column);
-    }
-
-    // Run the cleanup function less frequently on mobile
-    setInterval(cleanupBinaryRain, 2000);
 }
 
 // Custom cursor effect
@@ -125,16 +99,16 @@ function initEffects() {
     // Check if we're on mobile
     const isMobile = window.innerWidth <= 768 || 'ontouchstart' in document.documentElement;
 
-    // Initialize binary rain with fewer elements on mobile
+    // Initialize binary rain on all devices
+    // Stop any existing binary rain animations
     const binaryRain = document.getElementById('binaryRain');
     if (binaryRain) {
         binaryRain.innerHTML = '';
     }
+    createBinaryRain();
 
-    // Only create binary rain on desktop
+    // Only initialize custom cursor on desktop
     if (!isMobile) {
-        // Full binary rain for desktop
-        createBinaryRain();
         initCustomCursor();
     }
 
@@ -193,9 +167,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Check if we're on mobile
     const isMobile = window.innerWidth <= 768 || 'ontouchstart' in document.documentElement;
 
-    document.querySelectorAll('.holographic-card').forEach(card => {
-        if (!isMobile) {
-            // Full holographic effects on desktop
+    // Only apply holographic effects on desktop
+    if (!isMobile) {
+        document.querySelectorAll('.holographic-card').forEach(card => {
             card.addEventListener('mousemove', (e) => {
                 const x = e.clientX - card.getBoundingClientRect().left;
                 const y = e.clientY - card.getBoundingClientRect().top;
@@ -212,9 +186,8 @@ document.addEventListener('DOMContentLoaded', () => {
             card.addEventListener('mouseleave', () => {
                 card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
             });
-        }
-        // No effects for mobile
-    });
+        });
+    }
 });
 
 

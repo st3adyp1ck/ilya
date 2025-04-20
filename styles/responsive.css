@@ -50,6 +50,13 @@
         padding: 1rem !important;
     }
 
+    /* Ensure navbar glass effect is preserved */
+    nav.bg-opacity-90 {
+        backdrop-filter: blur(16px) !important;
+        -webkit-backdrop-filter: blur(16px) !important;
+        background-color: rgba(10, 10, 26, 0.85) !important;
+    }
+
     /* Fix for timeline on mobile */
     .timeline-item {
         padding-right: 0 !important;
@@ -60,18 +67,18 @@
         justify-content: center !important;
     }
 
-    /* Disable most animations on mobile */
+    /* Disable some animations on mobile for better performance */
     .holographic-card,
     .holographic-card:before,
     .holographic-card:hover,
     .hover-glow:hover {
-        box-shadow: none !important;
         transform: none !important;
         transition: none !important;
         animation: none !important;
+        box-shadow: 0 0 5px rgba(15, 240, 252, 0.3) !important;
     }
 
-    /* Keep minimal glow for neon elements */
+    /* Keep glass effect for navbar */
     .neon-box,
     .neon-border {
         box-shadow: 0 0 5px rgba(15, 240, 252, 0.3) !important;
@@ -82,39 +89,27 @@
         animation: none !important;
     }
 
-    /* Keep spin animations only in work experience section */
+    /* Keep text flicker animation for loading text */
+    .letter {
+        animation: text-flicker 0.3s infinite alternate !important;
+    }
+
+    /* Disable spin animations */
     .animate-spin {
         animation: none !important;
     }
 
-    /* Re-enable spin animations only in work experience section */
-    #experience .animate-spin {
-        animation: spin 3s linear infinite !important;
-    }
-
-    /* Keep cascading text animation */
-    .cascading-text {
-        animation: text-flicker 0.3s infinite alternate !important;
-    }
-
-    /* Keep navbar animations */
-    .neon-link:after {
-        transition: width 0.3s !important;
-    }
-
-    /* Only disable progress bar on mobile, but keep other effects */
+    /* Disable scanline and progress bar effects on mobile */
+    .scanline,
     .progress-bar,
     .desktop-only {
         display: none !important;
     }
 
-    /* Reduce opacity of effects for better performance */
+    /* Keep binary rain effect on mobile */
     .binary-rain {
         opacity: 0.05 !important;
-    }
-
-    .scanline {
-        opacity: 0.3 !important;
+        /* Reduce opacity on mobile for better performance */
     }
 
     /* Adjust preloader for mobile */
@@ -161,24 +156,5 @@
         -ms-overflow-style: none;
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
-    }
-
-    /* Ensure smooth scrolling with animations */
-    body {
-        will-change: scroll-position;
-    }
-
-    /* Fix footer navigation on mobile */
-    footer .footer-nav {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
-        text-align: center;
-        margin-bottom: 1rem;
-    }
-
-    footer .footer-nav a {
-        margin: 0 !important;
-        font-size: 0.9rem;
     }
 }

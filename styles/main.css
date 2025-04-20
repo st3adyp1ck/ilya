@@ -215,30 +215,6 @@ button,
     transform: translate(-50%, -50%);
 }
 
-/* Mobile card effect - subtle pulse animation */
-@keyframes mobile-card-pulse {
-    0% {
-        box-shadow: 0 0 5px rgba(15, 240, 252, 0.3);
-    }
-
-    50% {
-        box-shadow: 0 0 15px rgba(15, 240, 252, 0.5);
-    }
-
-    100% {
-        box-shadow: 0 0 5px rgba(15, 240, 252, 0.3);
-    }
-}
-
-.mobile-card-effect {
-    animation: mobile-card-pulse 3s infinite ease-in-out;
-}
-
-/* Cascading text animation - keep on mobile */
-.cascading-text {
-    animation: text-flicker 0.3s infinite alternate;
-}
-
 .cursor-dot {
     width: 4px;
     height: 4px;
