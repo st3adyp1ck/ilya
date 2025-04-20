@@ -60,26 +60,46 @@
         justify-content: center !important;
     }
 
-    /* Re-enable animations but with reduced intensity for mobile */
+    /* Disable most animations on mobile */
     .holographic-card,
     .holographic-card:before,
     .holographic-card:hover,
-    .hover-glow:hover,
+    .hover-glow:hover {
+        box-shadow: none !important;
+        transform: none !important;
+        transition: none !important;
+        animation: none !important;
+    }
+
+    /* Keep minimal glow for neon elements */
     .neon-box,
     .neon-border {
-        box-shadow: 0 0 10px rgba(15, 240, 252, 0.4) !important;
+        box-shadow: 0 0 5px rgba(15, 240, 252, 0.3) !important;
     }
 
-    /* Re-enable floating animation with reduced intensity */
+    /* Disable floating animation */
     .floating {
-        animation-duration: 6s !important;
-        /* Slower animation */
+        animation: none !important;
     }
 
-    /* Re-enable spin animations with reduced speed */
+    /* Keep spin animations only in work experience section */
     .animate-spin {
-        animation-duration: 3s !important;
-        /* Slower animation */
+        animation: none !important;
+    }
+
+    /* Re-enable spin animations only in work experience section */
+    #experience .animate-spin {
+        animation: spin 3s linear infinite !important;
+    }
+
+    /* Keep cascading text animation */
+    .cascading-text {
+        animation: text-flicker 0.3s infinite alternate !important;
+    }
+
+    /* Keep navbar animations */
+    .neon-link:after {
+        transition: width 0.3s !important;
     }
 
     /* Only disable progress bar on mobile, but keep other effects */

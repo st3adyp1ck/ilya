@@ -234,6 +234,11 @@ button,
     animation: mobile-card-pulse 3s infinite ease-in-out;
 }
 
+/* Cascading text animation - keep on mobile */
+.cascading-text {
+    animation: text-flicker 0.3s infinite alternate;
+}
+
 .cursor-dot {
     width: 4px;
     height: 4px;

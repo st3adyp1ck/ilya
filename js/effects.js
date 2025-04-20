@@ -131,11 +131,8 @@ function initEffects() {
         binaryRain.innerHTML = '';
     }
 
-    // Create binary rain with fewer elements on mobile
-    if (isMobile) {
-        // Simplified binary rain for mobile
-        createSimplifiedBinaryRain();
-    } else {
+    // Only create binary rain on desktop
+    if (!isMobile) {
         // Full binary rain for desktop
         createBinaryRain();
         initCustomCursor();
@@ -191,7 +188,7 @@ document.addEventListener('visibilitychange', () => {
     }
 });
 
-// Add hover effect to all holographic cards - with different behavior for mobile and desktop
+// Add hover effect to all holographic cards - only on desktop
 document.addEventListener('DOMContentLoaded', () => {
     // Check if we're on mobile
     const isMobile = window.innerWidth <= 768 || 'ontouchstart' in document.documentElement;
@@ -215,10 +212,8 @@ document.addEventListener('DOMContentLoaded', () => {
             card.addEventListener('mouseleave', () => {
                 card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
             });
-        } else {
-            // Simplified effect for mobile - subtle pulse animation
-            card.classList.add('mobile-card-effect');
         }
+        // No effects for mobile
     });
 });
 
