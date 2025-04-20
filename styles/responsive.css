@@ -60,35 +60,41 @@
         justify-content: center !important;
     }
 
-    /* Disable animations on mobile for better performance */
+    /* Re-enable animations but with reduced intensity for mobile */
     .holographic-card,
     .holographic-card:before,
     .holographic-card:hover,
     .hover-glow:hover,
     .neon-box,
     .neon-border {
-        transform: none !important;
-        transition: none !important;
-        animation: none !important;
-        box-shadow: 0 0 5px rgba(15, 240, 252, 0.3) !important;
+        box-shadow: 0 0 10px rgba(15, 240, 252, 0.4) !important;
     }
 
-    /* Disable floating animation */
+    /* Re-enable floating animation with reduced intensity */
     .floating {
-        animation: none !important;
+        animation-duration: 6s !important;
+        /* Slower animation */
     }
 
-    /* Disable spin animations */
+    /* Re-enable spin animations with reduced speed */
     .animate-spin {
-        animation: none !important;
+        animation-duration: 3s !important;
+        /* Slower animation */
     }
 
-    /* Disable binary rain, scanline, and progress bar effects on mobile */
-    .binary-rain,
-    .scanline,
+    /* Only disable progress bar on mobile, but keep other effects */
     .progress-bar,
     .desktop-only {
         display: none !important;
+    }
+
+    /* Reduce opacity of effects for better performance */
+    .binary-rain {
+        opacity: 0.05 !important;
+    }
+
+    .scanline {
+        opacity: 0.3 !important;
     }
 
     /* Adjust preloader for mobile */
@@ -135,5 +141,24 @@
         -ms-overflow-style: none;
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
+    }
+
+    /* Ensure smooth scrolling with animations */
+    body {
+        will-change: scroll-position;
+    }
+
+    /* Fix footer navigation on mobile */
+    footer .footer-nav {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+
+    footer .footer-nav a {
+        margin: 0 !important;
+        font-size: 0.9rem;
     }
 }
