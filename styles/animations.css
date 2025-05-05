@@ -45,15 +45,7 @@
     animation: flicker 3s linear infinite;
 }
 
-@keyframes scanline {
-    0% {
-        transform: translateY(0);
-    }
-
-    100% {
-        transform: translateY(100vh);
-    }
-}
+/* Scanline animation removed */
 
 @keyframes binary-fall {
     0% {
@@ -73,4 +65,73 @@
         transform: translateY(110vh);
         opacity: 0;
     }
+}
+
+@keyframes twirl {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.twirl-animation {
+    animation: twirl 8s linear infinite;
+    transform-origin: center;
+}
+
+@keyframes noise-shift {
+    0% {
+        background-position: 0 0;
+        opacity: 0.15;
+    }
+    50% {
+        background-position: -10px -10px;
+        opacity: 0.2;
+    }
+    100% {
+        background-position: 0 0;
+        opacity: 0.15;
+    }
+}
+
+/* Marketplace CTA animations */
+@keyframes subtle-glow {
+    0% {
+        box-shadow: 0 0 10px var(--neon-pink), 0 0 20px rgba(255, 0, 255, 0.1);
+    }
+    50% {
+        box-shadow: 0 0 15px var(--neon-pink), 0 0 30px rgba(255, 0, 255, 0.2);
+    }
+    100% {
+        box-shadow: 0 0 10px var(--neon-pink), 0 0 20px rgba(255, 0, 255, 0.1);
+    }
+}
+
+@keyframes cart-wiggle {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(-5deg);
+    }
+    75% {
+        transform: rotate(5deg);
+    }
+}
+
+.marketplace-cta {
+    animation: subtle-glow 3s ease-in-out infinite;
+    transition: all 0.3s ease;
+}
+
+.marketplace-cta:hover {
+    animation: none;
+    transform: translateY(-3px);
+    box-shadow: 0 0 20px var(--neon-pink), 0 0 40px rgba(255, 0, 255, 0.3);
+}
+
+.marketplace-cta:hover .marketplace-icon {
+    animation: cart-wiggle 0.5s ease-in-out;
 }

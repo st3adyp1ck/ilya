@@ -36,6 +36,22 @@ button,
     -webkit-text-fill-color: transparent;
 }
 
+/* Neon text glow effect for links */
+.neon-text-glow {
+    text-shadow: 0 0 5px var(--neon-blue), 0 0 10px var(--neon-blue), 0 0 15px var(--neon-blue);
+    animation: pulse-glow 2s infinite alternate;
+    letter-spacing: 0.5px;
+}
+
+@keyframes pulse-glow {
+    0% {
+        text-shadow: 0 0 5px var(--neon-blue), 0 0 10px var(--neon-blue);
+    }
+    100% {
+        text-shadow: 0 0 7px var(--neon-blue), 0 0 15px var(--neon-blue), 0 0 20px var(--neon-pink);
+    }
+}
+
 .card-glass {
     background: rgba(10, 10, 26, 0.65);
     backdrop-filter: blur(16px);
@@ -186,6 +202,46 @@ button,
     font-size: 14px;
 }
 
+/* Modal Binary Rain Effect */
+.binary-rain-modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    opacity: 0.3;
+    pointer-events: none;
+    font-family: monospace;
+    color: var(--neon-green);
+    overflow: hidden;
+}
+
+.binary-digit-modal {
+    position: absolute;
+    animation: binary-fall-modal 3s linear infinite;
+    font-size: 14px;
+    color: var(--neon-green);
+    text-shadow: 0 0 5px var(--neon-green);
+}
+
+@keyframes binary-fall-modal {
+    0% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(300%);
+        opacity: 0;
+    }
+}
+
 .scanline {
     position: absolute;
     top: 0;
@@ -198,8 +254,9 @@ button,
             transparent 1px);
     background-size: 100% 8px;
     pointer-events: none;
-    animation: scanline 8s linear infinite;
+    /* Animation removed */
     z-index: 10;
+    display: none; /* Hide the element completely */
 }
 
 /* Add this to your existing CSS */
@@ -233,6 +290,17 @@ button,
     border-color: var(--neon-pink);
 }
 
+/* Technology Icons Holographic Effect */
+.tech-icon-container {
+    box-shadow: 0 0 15px rgba(15, 240, 252, 0.3);
+    transition: all 0.3s ease;
+}
+
+.tech-icon-container:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 0 20px rgba(255, 0, 255, 0.4);
+}
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
     width: 10px;
@@ -251,6 +319,38 @@ button,
 
 ::-webkit-scrollbar-thumb:hover {
     background: linear-gradient(to bottom, var(--neon-pink), var(--neon-purple));
+}
+
+/* Floating Social Links */
+.social-links-vertical {
+    transition: all 0.3s ease;
+}
+
+.social-links-vertical a {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.social-links-vertical a:hover {
+    transform: translateY(-5px);
+}
+
+.social-links-vertical a::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.social-links-vertical a:hover::before {
+    opacity: 1;
 }
 
 /* Progress Bar */
@@ -409,3 +509,38 @@ button,
         background-position: 0% 50%;
     }
 }
+
+.digital-noise-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABmJLR0QA/wD/AP+gvaeTAAAA30lEQVRoge3ZMQ6CQBRF0YvGxsrKysqVuA5jZWHFFlyCvQuwsXQDVnR2VhYW1mLnJIqJMZiBP8nJFLyXP5lJJgOKoiiKMlZVNReRSkTOInITkZuqnkSkcs5VM2jUeZ6vVHWH73bOuXXKNh6ZiMgBwxrn3DZVGxP2ETwVVT2KSJmijckQxDtXVZsUbSQGIiKiqm8RWcRuozECISLyiN1G6wMRIiJlzDZ6QYiI7GO1MQhCRGQRo41REMzwNVPVQ+g2Jv2wd+1D5dBt/A1CROQZ+rPRCiEi8hKRMnQwRVGUafkAFANqZODGRJIAAAAASUVORK5CYII=');
+    opacity: 0.15;
+    pointer-events: none;
+    animation: noise-shift 0.5s steps(2) infinite;
+}
+
+nav {
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+nav:hover {
+    border-image: linear-gradient(90deg, var(--neon-blue), var(--neon-pink)) 1;
+    box-shadow: 0 5px 15px rgba(15, 240, 252, 0.2);
+}
+
+.nav-with-noise::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, rgba(15, 240, 252, 0.05), rgba(255, 0, 255, 0.05));
+    z-index: -1;
+}
+

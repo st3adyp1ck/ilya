@@ -1,0 +1,38 @@
+# robots.txt for https://ilya.northstarcoding.com
+# Updated: 2023-12-31
+
+User-agent: *
+Allow: /
+Disallow: /assets/docs/
+Disallow: /cgi-bin/
+Disallow: /tmp/
+Disallow: /private/
+
+# Allow Google to index everything
+User-agent: Googlebot
+Allow: /
+Disallow: /assets/docs/
+
+# Allow Bing to index everything
+User-agent: Bingbot
+Allow: /
+Disallow: /assets/docs/
+
+# Block specific bots that might cause issues
+User-agent: Baiduspider
+Disallow: /
+
+User-agent: Yandex
+Disallow: /
+
+# Crawl delay for all bots
+Crawl-delay: 10
+
+# Sitemap location
+Sitemap: https://ilya.northstarcoding.com/sitemap.xml
+
+# Host directive for canonical domain
+Host: ilya.northstarcoding.com
+
+# Company website
+Sitemap: https://www.northstarcoding.com/sitemap.xml

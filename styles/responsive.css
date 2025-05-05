@@ -106,6 +106,19 @@
         display: none !important;
     }
 
+    /* Hide floating social links on mobile */
+    .social-links-vertical {
+        display: none !important; /* Completely hide on mobile */
+    }
+
+    /* Show social links in footer only on mobile */
+    .footer-social-links {
+        display: flex !important;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+
     /* Keep binary rain effect on mobile */
     .binary-rain {
         opacity: 0.05 !important;

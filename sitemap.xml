@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1"
+        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"
+        xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+  <url>
+    <loc>https://ilya.northstarcoding.com/</loc>
+    <lastmod>2023-12-31T00:00:00+00:00</lastmod>
+    <priority>1.00</priority>
+    <changefreq>weekly</changefreq>
+    <image:image>
+      <image:loc>https://ilya.northstarcoding.com/assets/images/holoBot.png</image:loc>
+      <image:title>Ilya Belous - Full Stack Developer at Northstar Coding</image:title>
+      <image:caption>Holographic robot logo for Ilya Belous portfolio</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://ilya.northstarcoding.com/Cyborg No-BG.png</image:loc>
+      <image:title>Ilya Belous - Full Stack Developer at Northstar Coding</image:title>
+      <image:caption>Professional portrait of Ilya Belous</image:caption>
+    </image:image>
+    <mobile:mobile/>
+  </url>
+  <url>
+    <loc>https://ilya.northstarcoding.com/thank-you.html</loc>
+    <lastmod>2023-12-31T00:00:00+00:00</lastmod>
+    <priority>0.80</priority>
+    <changefreq>monthly</changefreq>
+    <mobile:mobile/>
+  </url>
+  <url>
+    <loc>https://ilya.northstarcoding.com/#about</loc>
+    <lastmod>2023-12-31T00:00:00+00:00</lastmod>
+    <priority>0.90</priority>
+    <changefreq>monthly</changefreq>
+    <mobile:mobile/>
+  </url>
+  <url>
+    <loc>https://ilya.northstarcoding.com/#experience</loc>
+    <lastmod>2023-12-31T00:00:00+00:00</lastmod>
+    <priority>0.85</priority>
+    <changefreq>monthly</changefreq>
+    <mobile:mobile/>
+  </url>
+  <url>
+    <loc>https://ilya.northstarcoding.com/#skills</loc>
+    <lastmod>2023-12-31T00:00:00+00:00</lastmod>
+    <priority>0.85</priority>
+    <changefreq>monthly</changefreq>
+    <mobile:mobile/>
+  </url>
+  <url>
+    <loc>https://ilya.northstarcoding.com/#contact</loc>
+    <lastmod>2023-12-31T00:00:00+00:00</lastmod>
+    <priority>0.90</priority>
+    <changefreq>monthly</changefreq>
+    <mobile:mobile/>
+  </url>
+  <url>
+    <loc>https://www.northstarcoding.com/</loc>
+    <lastmod>2023-12-31T00:00:00+00:00</lastmod>
+    <priority>0.75</priority>
+    <changefreq>monthly</changefreq>
+    <mobile:mobile/>
+  </url>
+</urlset>

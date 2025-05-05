@@ -125,3 +125,96 @@ if (contactForm) {
             });
     });
 }
+
+// Update copyright year
+document.addEventListener('DOMContentLoaded', () => {
+    const currentYearElement = document.getElementById('current-year');
+    if (currentYearElement) {
+        currentYearElement.textContent = new Date().getFullYear();
+    }
+});
+
+// Add structured data for breadcrumbs
+function addBreadcrumbsStructuredData() {
+    const breadcrumbsData = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://ilyabelous.com/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "About",
+                "item": "https://ilyabelous.com/#about"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Experience",
+                "item": "https://ilyabelous.com/#experience"
+            },
+            {
+                "@type": "ListItem",
+                "position": 4,
+                "name": "Skills",
+                "item": "https://ilyabelous.com/#skills"
+            },
+            {
+                "@type": "ListItem",
+                "position": 5,
+                "name": "Contact",
+                "item": "https://ilyabelous.com/#contact"
+            }
+        ]
+    };
+
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.textContent = JSON.stringify(breadcrumbsData);
+    document.head.appendChild(script);
+}
+
+// Call the function to add breadcrumbs structured data
+document.addEventListener('DOMContentLoaded', addBreadcrumbsStructuredData);
+
+// Enhanced marketplace link interaction
+document.addEventListener('DOMContentLoaded', () => {
+    const marketplaceLink = document.querySelector('.marketplace-cta');
+    if (marketplaceLink) {
+        // Add attention-grabbing effect when user scrolls to the featured projects section
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Add a brief pulse animation when the link comes into view
+                    marketplaceLink.classList.add('animate-pulse');
+                    setTimeout(() => {
+                        marketplaceLink.classList.remove('animate-pulse');
+                    }, 2000);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        // Observe the parent section
+        const featuredSection = document.getElementById('skills');
+        if (featuredSection) {
+            observer.observe(featuredSection);
+        }
+
+        // Add special hover effect for the icon
+        const marketplaceIcon = marketplaceLink.querySelector('.marketplace-icon');
+        if (marketplaceIcon) {
+            marketplaceLink.addEventListener('mouseenter', () => {
+                marketplaceIcon.classList.add('animate-bounce');
+            });
+
+            marketplaceLink.addEventListener('mouseleave', () => {
+                marketplaceIcon.classList.remove('animate-bounce');
+            });
+        }
+    }
+});

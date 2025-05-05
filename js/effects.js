@@ -94,6 +94,35 @@ function throttle(func, limit) {
     };
 }
 
+// Initialize digital noise effect
+function initDigitalNoiseEffect() {
+    const navElement = document.querySelector('nav');
+    const noiseOverlay = document.querySelector('.digital-noise-overlay');
+
+    if (!navElement || !noiseOverlay) return;
+
+    // Enhance noise effect on hover
+    navElement.addEventListener('mouseenter', () => {
+        noiseOverlay.style.opacity = '0.25';
+        noiseOverlay.style.animationDuration = '0.3s';
+    });
+
+    navElement.addEventListener('mouseleave', () => {
+        noiseOverlay.style.opacity = '0.15';
+        noiseOverlay.style.animationDuration = '0.5s';
+    });
+
+    // Random glitch effect
+    setInterval(() => {
+        if (Math.random() > 0.9) { // 10% chance of glitch
+            noiseOverlay.style.opacity = '0.3';
+            setTimeout(() => {
+                noiseOverlay.style.opacity = '0.15';
+            }, 100);
+        }
+    }, 3000);
+}
+
 // Initialize all effects
 function initEffects() {
     // Check if we're on mobile
@@ -106,6 +135,9 @@ function initEffects() {
         binaryRain.innerHTML = '';
     }
     createBinaryRain();
+
+    // Initialize digital noise effect
+    initDigitalNoiseEffect();
 
     // Only initialize custom cursor on desktop
     if (!isMobile) {

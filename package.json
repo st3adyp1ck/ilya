@@ -1,0 +1,20 @@
+{
+  "name": "freelancer-portfolio",
+  "version": "1.0.0",
+  "description": "Ilya Belous - Senior Full Stack Developer Portfolio",
+  "main": "index.html",
+  "scripts": {
+    "start": "live-server",
+    "dev": "live-server"
+  },
+  "keywords": [
+    "portfolio",
+    "developer",
+    "frontend"
+  ],
+  "author": "Ilya Belous",
+  "license": "MIT",
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found | Ilya Belous</title>
+    <meta name="robots" content="noindex, follow">
+    <link rel="canonical" href="https://ilyabelous.com/404.html">
+
+    <!-- Favicon Package -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#0a0a1a">
+    <meta name="msapplication-TileColor" content="#0a0a1a">
+    <meta name="theme-color" content="#0a0a1a">
+
+    <!-- Stylesheets -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/animations.css">
+    <link rel="stylesheet" href="styles/responsive.css">
+
+    <style>
+        .glitch-text {
+            position: relative;
+            animation: glitch 1s linear infinite;
+        }
+
+        @keyframes glitch {
+            2%, 64% {
+                transform: translate(2px, 0) skew(0deg);
+            }
+            4%, 60% {
+                transform: translate(-2px, 0) skew(0deg);
+            }
+            62% {
+                transform: translate(0, 0) skew(5deg);
+            }
+        }
+
+        .glitch-text:before,
+        .glitch-text:after {
+            content: attr(title);
+            position: absolute;
+            left: 0;
+        }
+
+        .glitch-text:before {
+            animation: glitchTop 1s linear infinite;
+            clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+            -webkit-clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+        }
+
+        @keyframes glitchTop {
+            2%, 64% {
+                transform: translate(2px, -2px);
+            }
+            4%, 60% {
+                transform: translate(-2px, 2px);
+            }
+            62% {
+                transform: translate(13px, -1px) skew(-13deg);
+            }
+        }
+
+        .glitch-text:after {
+            animation: glitchBottom 1.5s linear infinite;
+            clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
+            -webkit-clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
+        }
+
+        @keyframes glitchBottom {
+            2%, 64% {
+                transform: translate(-2px, 0);
+            }
+            4%, 60% {
+                transform: translate(-2px, 0);
+            }
+            62% {
+                transform: translate(-22px, 5px) skew(21deg);
+            }
+        }
+    </style>
+</head>
+
+<body class="grid-bg relative overflow-x-hidden">
+    <div class="binary-rain" id="binaryRain"></div>
+    <div class="scanline"></div>
+
+    <div class="min-h-screen flex flex-col items-center justify-center px-4 text-center">
+        <div class="card-glass p-8 rounded-2xl neon-box max-w-2xl">
+            <h1 class="text-6xl md:text-8xl font-bold tech-font mb-6">
+                <span class="glitch-text gradient-text" title="404">404</span>
+            </h1>
+            <h2 class="text-2xl md:text-3xl font-semibold text-slate-300 tech-font mb-8">// SYSTEM <span class="text-neon-pink">ERROR</span></h2>
+            
+            <div class="my-8 relative">
+                <div class="absolute inset-0 bg-neon-blue blur-lg opacity-20 rounded-full"></div>
+                <p class="text-lg text-slate-400 relative">
+                    The page you're looking for has been moved, deleted, or possibly never existed in this dimension.
+                </p>
+            </div>
+            
+            <div class="flex flex-wrap gap-4 justify-center mt-8">
+                <a href="/"
+                    class="px-8 py-4 bg-gradient-to-r from-neon-blue to-neon-purple rounded-full font-bold hover:opacity-90 transition-all duration-300 flex items-center gap-3 tech-font neon-box hover-glow">
+                    <span>RETURN HOME</span>
+                    <i class="fas fa-home"></i>
+                </a>
+                <a href="/#contact"
+                    class="px-8 py-4 border border-neon-pink text-neon-pink rounded-full font-bold hover:bg-opacity-20 hover:bg-neon-pink transition-all duration-300 flex items-center gap-3 tech-font hover-glow">
+                    <span>CONTACT ME</span>
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+        </div>
+        
+        <div class="mt-12">
+            <p class="text-sm text-slate-500 tech-font">© <span id="current-year">2023</span> ILYA BELOUS. ALL RIGHTS RESERVED.</p>
+        </div>
+    </div>
+
+    <script src="js/effects.js"></script>
+    <script>
+        // Update copyright year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // Initialize effects
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof initEffects === 'function') {
+                initEffects();
+            } else {
+                // Fallback if effects.js isn't loaded
+                createBinaryRain();
+            }
+        });
+        
+        // Simple binary rain fallback
+        function createBinaryRain() {
+            const container = document.getElementById('binaryRain');
+            if (!container) return;
+            
+            const columnCount = 20;
+            for (let i = 0; i < columnCount; i++) {
+                const column = document.createElement('div');
+                column.className = 'binary-column absolute';
+                column.style.left = `${Math.random() * 100}%`;
+                container.appendChild(column);
+                
+                for (let j = 0; j < 15; j++) {
+                    const digit = document.createElement('div');
+                    digit.className = 'binary-digit';
+                    digit.textContent = Math.round(Math.random()) ? '1' : '0';
+                    digit.style.animationDuration = `${3 + Math.random() * 5}s`;
+                    digit.style.animationDelay = `${Math.random() * 2}s`;
+                    digit.style.top = `${j * 5}%`;
+                    column.appendChild(digit);
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
