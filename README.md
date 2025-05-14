@@ -1,14 +1,10 @@
 <div align="center">
-<<<<<<< HEAD
   <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=32&duration=2800&pause=2000&color=A9FEF7&center=true&vCenter=true&width=940&lines=Hey%2C+I'm+Ilya+Belous+%F0%9F%91%8B;Senior+Full+Stack+Developer+with+15%2B+Years+Experience" alt="Typing SVG" />
-=======
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&duration=2800&pause=2000&color=A9FEF7&center=true&vCenter=true&width=940&lines=Hey%2C+I'm+Ilya+Belous+%F0%9F%91%8B;Senior+Full+Stack+Developer+with+15%2B+Years+Experience" alt="Typing SVG" />
->>>>>>> 29b8e1856d449e7dcee577df3afaf270c019eca2
   <br/>
-  
+
   <!-- Profile Views Counter -->
   ![](https://komarev.com/ghpvc/?username=ilyabelous&color=blueviolet)
-  
+
   <!-- Social Badges -->
   [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/ilyabelous)
   [![Portfolio](https://img.shields.io/badge/Portfolio-FF5722?style=for-the-badge&logo=google-chrome&logoColor=white)](https://ilyabelous.com)
@@ -26,7 +22,7 @@ Senior Full Stack Developer with 15+ years of experience crafting scalable web a
 ### 🛠️ Tech Stack
 
 <div align="center">
-  
+
   ![Angular](https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white)
   ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
   ![Vue.js](https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vue.js&logoColor=4FC08D)
@@ -51,10 +47,10 @@ Senior Full Stack Developer with 15+ years of experience crafting scalable web a
         </a>
       </td>
       <td align="center">
-        <a href="https://www.lemonade.com">
-          <img src="https://img.shields.io/badge/Lemonade-InsurTech-green?style=for-the-badge&logo=angular" alt="Lemonade"/>
+        <a href="https://www.atzula.online">
+          <img src="https://img.shields.io/badge/Atzula-SpaManagement-purple?style=for-the-badge&logo=mongodb" alt="Atzula Massage Spa"/>
           <br/>
-          AI-Powered Insurance Platform
+          Comprehensive Spa Management System
         </a>
       </td>
       <td align="center">
